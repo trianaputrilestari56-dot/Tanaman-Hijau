@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Green Nursery Bangkalan - Tanaman Hijau & Perlengkapan Kebun</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              green: '#15803d',
+              darkgreen: '#14532d',
+              gold: '#d97706',
+              cream: '#f4fbf7',
+              accent: '#dcfce7'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-brand-cream text-gray-800 font-sans min-h-screen flex flex-col">
+
+  <!-- TOP ANNOUNCEMENT BANNER -->
+  <div class="bg-brand-darkgreen text-white text-xs md:text-sm py-2 px-4 text-center font-medium flex justify-between items-center px-6">
+    <div class="hidden md:block text-emerald-300">
+      <i class="fa-solid fa-leaf mr-1"></i> Pre-Order Hari Ini | Pengiriman Rutin: Sabtu 19.00 WIB
+    </div>
+    <div class="mx-auto md:mx-0 flex items-center gap-2">
+      <span class="bg-amber-500 text-xs px-2 py-0.5 rounded font-bold text-gray-900">INFO PENTING</span>
+      <span>Delivery Setiap Hari Sabtu Jam 19.00 WIB • <strong>GRATIS ONGKIR!</strong></span>
+    </div>
+    <a href="seller.html" target="_blank" class="hidden md:inline-block text-xs bg-emerald-700 hover:bg-emerald-600 px-2.5 py-1 rounded border border-emerald-500 transition">
+      <i class="fa-solid fa-user-shield mr-1"></i> Portal Penjual
+    </a>
+  </div>
+
+  <!-- HEADER / NAVBAR -->
+  <header class="bg-brand-green text-white shadow-md sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+      <!-- LOGO -->
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center text-brand-darkgreen font-black text-xl shadow-inner border border-emerald-300">
+          <i class="fa-solid fa-seedling text-brand-green"></i>
+        </div>
+        <div>
+          <span class="text-xl md:text-2xl font-black tracking-tight block leading-none">Green Nursery</span>
+          <span class="text-[10px] text-emerald-200 tracking-wider uppercase font-semibold">Tanaman Asli Bangkalan</span>
+        </div>
+      </a>
+
+      <!-- SEARCH BAR -->
+      <div class="flex-1 max-w-md hidden sm:block relative">
+        <input type="text" id="searchInput" oninput="renderProducts()" placeholder="Cari tanaman atau perlengkapan kebun..." class="w-full bg-white text-gray-800 text-sm rounded-full pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400 shadow-inner">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-gray-400"></i>
+      </div>
+
+      <!-- RIGHT ACTIONS -->
+      <div class="flex items-center gap-4">
+        <button onclick="toggleCartDrawer()" class="relative bg-brand-darkgreen p-2.5 rounded-full hover:bg-emerald-800 transition">
+          <i class="fa-solid fa-cart-shopping text-lg text-emerald-300"></i>
+          <span id="cartBadge" class="absolute -top-1 -right-1 bg-amber-500 text-gray-900 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center border-2 border-brand-green">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6">
+
+    <!-- HERO BANNER -->
+    <div class="bg-gradient-to-r from-emerald-900 to-brand-green rounded-2xl p-6 md:p-8 text-white shadow-xl mb-8 relative overflow-hidden border border-emerald-700">
+      <div class="relative z-10 max-w-2xl">
+        <div class="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 border border-amber-400/30 px-3 py-1 rounded-full text-xs font-bold mb-3">
+          <i class="fa-solid fa-location-dot"></i> Produk Asli Bangkalan, Madura
+        </div>
+        <h1 class="text-2xl md:text-4xl font-extrabold mb-2 leading-tight">
+          Tanaman Hijau Segar & Perlengkapan Kebun Berkualitas!
+        </h1>
+        <p class="text-emerald-100 text-sm md:text-base mb-6">
+          Bawa kesegaran alam ke halaman rumah Anda. Semua bibit tanaman dikembangkan dengan merawat standar kualitas terbaik khas Bangkalan, Madura.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#menu-section" class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold px-5 py-2.5 rounded-xl shadow-lg transition flex items-center gap-2 text-sm">
+            <i class="fa-solid fa-leaf"></i> Lihat Katalog Tanaman
+          </a>
+          <a href="seller.html" target="_blank" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-4 py-2.5 rounded-xl border border-white/20 transition flex items-center gap-2 text-sm">
+            <i class="fa-solid fa-store"></i> Buka Portal Penjual
+          </a>
+        </div>
+      </div>
+      <div class="absolute right-0 bottom-0 top-0 w-1/3 opacity-20 md:opacity-30 pointer-events-none flex items-center justify-center">
+        <i class="fa-solid fa-tree text-[180px] text-emerald-300"></i>
+      </div>
+    </div>
+
+    <!-- INFORMASI STATUS PRE-ORDER -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div class="bg-white p-4 rounded-xl border border-emerald-100 shadow-sm flex items-center gap-4">
+        <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-brand-green text-xl font-bold">
+          <i class="fa-solid fa-calendar-check"></i>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm text-gray-800">Pemesanan Buka Setiap Hari</h4>
+          <p class="text-xs text-gray-500">Pesan kapan saja via website</p>
+        </div>
+      </div>
+      <div class="bg-white p-4 rounded-xl border border-emerald-100 shadow-sm flex items-center gap-4">
+        <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center text-amber-600 text-xl font-bold">
+          <i class="fa-solid fa-truck-fast"></i>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm text-gray-800">Jadwal Pengiriman (Delivery)</h4>
+          <p class="text-xs text-gray-500">Setiap Hari Sabtu Jam 19.00 WIB</p>
+        </div>
+      </div>
+      <div class="bg-white p-4 rounded-xl border border-emerald-100 shadow-sm flex items-center gap-4">
+        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 text-xl font-bold">
+          <i class="fa-solid fa-gift"></i>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm text-gray-800">Bebas Biaya Kirim</h4>
+          <p class="text-xs text-gray-500">Delivery Gratis ke Lokasi Anda</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION MENU VARIAN -->
+    <section id="menu-section" class="mb-10">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="text-2xl font-black text-brand-darkgreen">Katalog Tanaman & Alat Kebun</h2>
+          <p class="text-xs text-gray-500">Pilihan bibit tanaman hijau berkualitas tinggi</p>
+        </div>
+        <span class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-bold" id="productCountBadge">Memuat Produk...</span>
+      </div>
+
+      <!-- PRODUCT GRID -->
+      <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        <!-- Rendered via JavaScript -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- CART DRAWER / SIDEBAR -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 transform translate-x-full transition-transform duration-300 ease-in-out">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="toggleCartDrawer()"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col z-10">
+      
+      <div class="bg-brand-green text-white p-4 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-cart-shopping text-emerald-300"></i>
+          <h3 class="font-bold text-lg">Keranjang Belanja</h3>
+        </div>
+        <button onclick="toggleCartDrawer()" class="text-emerald-200 hover:text-white text-xl">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-4 space-y-3">
+        <!-- Cart Items Rendered via JS -->
+      </div>
+
+      <div class="p-4 border-t border-gray-100 bg-gray-50 space-y-3">
+        <div class="flex justify-between items-center text-sm">
+          <span class="text-gray-500">Total Pembayaran:</span>
+          <span id="cartTotal" class="text-xl font-black text-brand-darkgreen">Rp 0</span>
+        </div>
+        <button id="btnToCheckout" onclick="openCheckoutModal()" class="w-full bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-3 rounded-xl shadow transition disabled:opacity-50 disabled:cursor-not-allowed">
+          Lanjut ke Format Pemesanan <i class="fa-solid fa-arrow-right ml-1"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL FORMAT PEMESANAN & CHECKOUT -->
+  <div id="checkoutModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-100 my-8">
+      
+      <div class="bg-brand-green text-white p-5 sticky top-0 z-10 flex justify-between items-center">
+        <div>
+          <h3 class="font-bold text-lg">Format Pemesanan Tanaman</h3>
+          <p class="text-xs text-emerald-200">Lengkapi data untuk pengiriman Sabtu 19.00 WIB</p>
+        </div>
+        <button onclick="closeCheckoutModal()" class="text-white hover:text-amber-300 text-xl">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="checkoutForm" onsubmit="handleCheckoutSubmit(event)" class="p-6 space-y-4">
+
+        <!-- RINGKASAN ORDER -->
+        <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl">
+          <div class="text-xs font-bold text-brand-darkgreen uppercase tracking-wide mb-1">Ringkasan Pesanan</div>
+          <div id="checkoutSummaryText" class="text-xs text-gray-700 font-medium"></div>
+          <div class="text-right text-sm font-bold text-emerald-800 mt-1" id="checkoutTotalPrice"></div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Nama Lengkap <span class="text-red-500">*</span></label>
+          <input type="text" id="custName" required placeholder="Contoh: Budi Santoso" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-brand-green focus:outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Nomor WhatsApp <span class="text-red-500">*</span></label>
+          <input type="tel" id="custWA" required placeholder="Contoh: 085936618342" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-brand-green focus:outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Metode Pengiriman</label>
+          <input type="text" value="Delivery Langsung (Gratis Ongkir)" disabled class="w-full bg-gray-100 border border-gray-200 rounded-lg p-2.5 text-sm font-semibold text-gray-600 cursor-not-allowed">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-gray-700 mb-1">Hari Pengiriman</label>
+            <input type="text" value="Hari Sabtu" disabled class="w-full bg-gray-100 border border-gray-200 rounded-lg p-2 text-xs font-bold text-brand-darkgreen">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-gray-700 mb-1">Jam Pengiriman</label>
+            <input type="text" value="19.00 WIB" disabled class="w-full bg-gray-100 border border-gray-200 rounded-lg p-2 text-xs font-bold text-brand-darkgreen">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Share Location Maps (URL Google Maps) <span class="text-red-500">*</span></label>
+          <input type="url" id="custMaps" required placeholder="https://maps.app.goo.gl/..." class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-brand-green focus:outline-none">
+          <p class="text-[10px] text-gray-500 mt-1">Salin link titik lokasi rumah/kost Anda dari Google Maps.</p>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Catatan Alamat / Catatan Tambahan</label>
+          <textarea id="custNotes" rows="2" placeholder="Contoh: Depan pagar hijau, atau simpan dekat teras rumah" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-brand-green focus:outline-none"></textarea>
+        </div>
+
+        <!-- METODE PEMBAYARAN -->
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Metode Pembayaran <span class="text-red-500">*</span></label>
+          <select id="payMethod" onchange="togglePaymentDetails()" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-brand-green focus:outline-none">
+            <option value="Cash">Cash (Bayar di Tempat saat Delivery)</option>
+            <option value="Transfer BNI">Transfer Bank BNI</option>
+            <option value="Transfer BRI">Transfer Bank BRI</option>
+            <option value="Transfer BCA">Transfer Bank BCA</option>
+            <option value="Transfer Mandiri">Transfer Bank Mandiri</option>
+            <option value="ShopeePay">Transfer ShopeePay</option>
+          </select>
+        </div>
+
+        <!-- REKENING / NO PAY DETAIL -->
+        <div id="paymentDetailBox" class="hidden bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs space-y-2">
+          <div id="bankBNIDetail" class="pay-detail-item hidden">
+            <span class="font-bold text-gray-800">Rekening BNI:</span>
+            <div class="text-base font-black text-brand-darkgreen select-all">1863851872</div>
+            <div class="text-gray-600">a.n Adinda Jingga Julistiraaa</div>
+          </div>
+          <div id="bankBRIDetail" class="pay-detail-item hidden">
+            <span class="font-bold text-gray-800">Rekening BRI:</span>
+            <div class="text-base font-black text-blue-700 select-all">0012-01-085936-50-2</div>
+            <div class="text-gray-600">a.n Green Nursery Bangkalan</div>
+          </div>
+          <div id="bankBCADetail" class="pay-detail-item hidden">
+            <span class="font-bold text-gray-800">Rekening BCA:</span>
+            <div class="text-base font-black text-blue-800 select-all">8290-366-183</div>
+            <div class="text-gray-600">a.n Green Nursery Bangkalan</div>
+          </div>
+          <div id="bankMandiriDetail" class="pay-detail-item hidden">
+            <span class="font-bold text-gray-800">Rekening Mandiri:</span>
+            <div class="text-base font-black text-yellow-700 select-all">141-00-8593661-8</div>
+            <div class="text-gray-600">a.n Green Nursery Bangkalan</div>
+          </div>
+          <div id="shopeePayDetail" class="pay-detail-item hidden">
+            <span class="font-bold text-gray-800">Nomor ShopeePay:</span>
+            <div class="text-base font-black text-orange-600 select-all">+62 859-3661-8342</div>
+            <div class="text-gray-600">a.n Adinda Jingga Julistiraaa</div>
+          </div>
+          
+          <!-- UPLOAD BUKTI TRANSFER -->
+          <div class="pt-2 border-t border-amber-200">
+            <label class="block font-bold text-gray-800 mb-1">Upload Bukti Transfer <span class="text-red-500">*</span></label>
+            <input type="file" id="transferProof" accept="image/*" class="w-full text-xs text-gray-600 file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-brand-green file:text-white hover:file:bg-brand-darkgreen">
+          </div>
+        </div>
+
+        <div class="p-3 bg-amber-100 border-l-4 border-amber-500 rounded text-[11px] text-amber-900 font-semibold">
+          <i class="fa-solid fa-circle-info mr-1"></i> Info penting: delivery hari Sabtu jam 19.00, delivery gratis
+        </div>
+
+        <button type="submit" id="btnSubmitOrder" class="w-full bg-brand-green hover:bg-brand-darkgreen text-white font-bold py-3 rounded-xl shadow-lg transition">
+          <i class="fa-solid fa-paper-plane mr-1"></i> Kirim Pesanan Sekarang
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- MODAL STATUS PEMBAYARAN BERHASIL -->
+  <div id="successModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 text-center space-y-4 shadow-2xl">
+      <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <h3 class="text-xl font-black text-brand-darkgreen">Pesanan Berhasil Diterima!</h3>
+      <p class="text-xs text-gray-600 leading-relaxed" id="successModalText"></p>
+      <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs text-left space-y-1">
+        <p><strong>Jadwal Delivery:</strong> Setiap Hari Sabtu Jam 19.00 WIB</p>
+        <p><strong>Status Pengiriman:</strong> Gratis Ongkir</p>
+      </div>
+      <button onclick="closeSuccessModal()" class="w-full bg-brand-green text-white font-bold py-2.5 rounded-xl hover:bg-brand-darkgreen transition">
+        Tutup & Kembali
+      </button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-darkgreen text-white py-6 border-t border-emerald-800">
+    <div class="max-w-7xl mx-auto px-4 text-center text-xs text-emerald-200 space-y-2">
+      <p class="font-bold text-sm text-white">Green Nursery Bangkalan Madura</p>
+      <p>Pusat Tanaman Hijau & Bibit Unggul • Kontak Pesanan: +62 859-3661-8342</p>
+      <p class="text-[10px] text-emerald-400">© 2026 Green Nursery. Integrated Portal System.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT INTEGRASI REAL-TIME CLOUD JSONBIN -->
+  <script>
+    const BIN_ID = '6abdc4daffd5d160534134f8';
+    const API_KEY = '$2a$10$70aKiUh3j3odlNiIrYT0Q.j7XX0cdP4gYiFvHkqGv.foOEWuhocSa';
+    const JSONBIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+
+    const defaultProducts = [
+      { id: 1, name: 'Sekop', price: 15000, stock: 25, rating: '4.9', img: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=500&q=80', badge: 'Perlengkapan' },
+      { id: 2, name: 'Penyiram Tanaman', price: 15000, stock: 20, rating: '4.8', img: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=500&q=80', badge: 'Perlengkapan' },
+      { id: 3, name: 'Ketapang Kencana', price: 20000, stock: 15, rating: '5.0', img: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=500&q=80', badge: 'Terlaris' },
+      { id: 4, name: 'Tebabuya', price: 17000, stock: 18, rating: '4.8', img: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=500&q=80', badge: 'Favorit' },
+      { id: 5, name: 'Mangga', price: 25000, stock: 12, rating: '4.9', img: 'https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=500&q=80', badge: 'Bibit Buah' },
+      { id: 6, name: 'Cemara', price: 27000, stock: 10, rating: '4.7', img: 'https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?auto=format&fit=crop&w=500&q=80', badge: 'Hias' },
+      { id: 7, name: 'Pucuk Merah', price: 17000, stock: 30, rating: '4.9', img: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=500&q=80', badge: 'Populer' },
+      { id: 8, name: 'Kedondong', price: 27000, stock: 14, rating: '4.8', img: 'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=500&q=80', badge: 'Bibit Buah' },
+      { id: 9, name: 'Trembesi', price: 23000, stock: 10, rating: '5.0', img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=500&q=80', badge: 'Peneduh' }
+    ];
+
+    let globalData = { products: defaultProducts, orders: [] };
+    let cart = [];
+
+    async function fetchCloudData() {
+      try {
+        const res = await fetch(JSONBIN_URL, {
+          headers: { 'X-Master-Key': API_KEY }
+        });
+        const result = await res.json();
+        
+        // Inisialisasi jika bin masih kosong
+        if (!result.record || !result.record.products) {
+          await saveCloudData();
+        } else {
+          globalData = result.record;
+        }
+        renderProducts();
+      } catch (err) {
+        console.error('Gagal mengambil data dari cloud:', err);
+      }
+    }
+
+    async function saveCloudData() {
+      try {
+        await fetch(JSONBIN_URL, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Master-Key': API_KEY
+          },
+          body: JSON.stringify(globalData)
+        });
+      } catch (err) {
+        console.error('Gagal menyimpan data ke cloud:', err);
+      }
+    }
+
+    function renderProducts() {
+      const products = globalData.products || [];
+      const query = document.getElementById('searchInput')?.value.toLowerCase() || '';
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = '';
+
+      const filtered = products.filter(p => p.name.toLowerCase().includes(query));
+      document.getElementById('productCountBadge').innerText = `${filtered.length} Produk Tersedia`;
+
+      filtered.forEach(p => {
+        const isOutOfStock = p.stock <= 0;
+        grid.innerHTML += `
+          <div class="bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between">
+            <div>
+              <div class="relative aspect-square overflow-hidden bg-gray-100">
+                <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover">
+                ${p.badge ? `<span class="absolute top-2 left-2 bg-amber-500 text-gray-900 font-black text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full shadow">${p.badge}</span>` : ''}
+                <span class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-md text-white text-xs font-bold px-2 py-0.5 rounded-lg">
+                  Stok: ${p.stock}
+                </span>
+              </div>
+              <div class="p-4">
+                <div class="flex items-center gap-1 text-amber-500 text-xs mb-1">
+                  <i class="fa-solid fa-star"></i>
+                  <span class="font-bold text-gray-700">${p.rating}</span>
+                </div>
+                <h3 class="font-bold text-gray-800 text-sm md:text-base leading-snug mb-1">${p.name}</h3>
+                <div class="text-brand-darkgreen font-black text-lg">Rp ${p.price.toLocaleString('id-ID')}</div>
+              </div>
+            </div>
+            <div class="p-4 pt-0">
+              <button onclick="addToCart(${p.id})" ${isOutOfStock ? 'disabled' : ''} class="w-full ${isOutOfStock ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-brand-green hover:bg-brand-darkgreen text-white'} font-bold py-2 rounded-xl text-xs md:text-sm shadow transition flex items-center justify-center gap-1">
+                <i class="fa-solid fa-cart-plus"></i> ${isOutOfStock ? 'Stok Habis' : 'Tambah Ke Keranjang'}
+              </button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function addToCart(id) {
+      const product = globalData.products.find(p => p.id === id);
+      if (!product || product.stock <= 0) return;
+
+      const cartItem = cart.find(item => item.id === id);
+      if (cartItem) {
+        if (cartItem.qty < product.stock) {
+          cartItem.qty++;
+        } else {
+          alert('Jumlah melebihi stok yang tersedia!');
+        }
+      } else {
+        cart.push({ ...product, qty: 1 });
+      }
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const count = cart.reduce((acc, item) => acc + item.qty, 0);
+      document.getElementById('cartBadge').innerText = count;
+
+      const container = document.getElementById('cartItemsContainer');
+      container.innerHTML = '';
+
+      let total = 0;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 text-gray-400 space-y-2">
+            <i class="fa-solid fa-basket-shopping text-4xl"></i>
+            <p class="text-xs">Keranjang belanja Anda masih kosong.</p>
+          </div>
+        `;
+        document.getElementById('btnToCheckout').disabled = true;
+      } else {
+        document.getElementById('btnToCheckout').disabled = false;
+        cart.forEach(item => {
+          const itemTotal = item.price * item.qty;
+          total += itemTotal;
+          container.innerHTML += `
+            <div class="flex items-center gap-3 p-2.5 bg-gray-50 rounded-xl border border-gray-100">
+              <img src="${item.img}" class="w-14 h-14 object-cover rounded-lg border">
+              <div class="flex-1 min-w-0">
+                <h4 class="font-bold text-xs text-gray-800 truncate">${item.name}</h4>
+                <div class="text-xs text-brand-darkgreen font-black">Rp ${item.price.toLocaleString('id-ID')}</div>
+              </div>
+              <div class="flex items-center gap-2 bg-white border border-gray-200 rounded-lg p-1">
+                <button onclick="changeQty(${item.id}, -1)" class="w-5 h-5 flex items-center justify-center text-xs font-bold hover:bg-gray-100 rounded">-</button>
+                <span class="text-xs font-bold w-4 text-center">${item.qty}</span>
+                <button onclick="changeQty(${item.id}, 1)" class="w-5 h-5 flex items-center justify-center text-xs font-bold hover:bg-gray-100 rounded">+</button>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      document.getElementById('cartTotal').innerText = `Rp ${total.toLocaleString('id-ID')}`;
+    }
+
+    function changeQty(id, delta) {
+      const product = globalData.products.find(p => p.id === id);
+      const item = cart.find(i => i.id === id);
+
+      if (!item) return;
+
+      item.qty += delta;
+
+      if (item.qty > product.stock) {
+        alert('Stok tidak mencukupi!');
+        item.qty = product.stock;
+      }
+
+      if (item.qty <= 0) {
+        cart = cart.filter(i => i.id !== id);
+      }
+
+      updateCartUI();
+    }
+
+    function toggleCartDrawer() {
+      document.getElementById('cartDrawer').classList.toggle('translate-x-full');
+    }
+
+    function openCheckoutModal() {
+      toggleCartDrawer();
+      const summaryText = cart.map(i => `${i.name} (x${i.qty})`).join(', ');
+      const total = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+
+      document.getElementById('checkoutSummaryText').innerText = summaryText;
+      document.getElementById('checkoutTotalPrice').innerText = `Total: Rp ${total.toLocaleString('id-ID')}`;
+      document.getElementById('checkoutModal').classList.remove('hidden');
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkoutModal').classList.add('hidden');
+    }
+
+    function togglePaymentDetails() {
+      const method = document.getElementById('payMethod').value;
+      const box = document.getElementById('paymentDetailBox');
+      const details = document.querySelectorAll('.pay-detail-item');
+
+      details.forEach(el => el.classList.add('hidden'));
+
+      if (method === 'Cash') {
+        box.classList.add('hidden');
+      } else {
+        box.classList.remove('hidden');
+        if (method === 'Transfer BNI') document.getElementById('bankBNIDetail').classList.remove('hidden');
+        if (method === 'Transfer BRI') document.getElementById('bankBRIDetail').classList.remove('hidden');
+        if (method === 'Transfer BCA') document.getElementById('bankBCADetail').classList.remove('hidden');
+        if (method === 'Transfer Mandiri') document.getElementById('bankMandiriDetail').classList.remove('hidden');
+        if (method === 'ShopeePay') document.getElementById('shopeePayDetail').classList.remove('hidden');
+      }
+    }
+
+    async function handleCheckoutSubmit(e) {
+      e.preventDefault();
+      const btnSubmit = document.getElementById('btnSubmitOrder');
+      btnSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> Memproses Pesanan...';
+      btnSubmit.disabled = true;
+
+      const name = document.getElementById('custName').value;
+      const wa = document.getElementById('custWA').value;
+      const maps = document.getElementById('custMaps').value;
+      const notes = document.getElementById('custNotes').value;
+      const payMethod = document.getElementById('payMethod').value;
+      const proofInput = document.getElementById('transferProof');
+
+      const processOrder = async (proofUrl) => {
+        const total = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+        const orderData = {
+          id: 'GRN-' + Date.now().toString().slice(-6),
+          date: new Date().toLocaleString('id-ID'),
+          custName: name,
+          custWA: wa,
+          custMaps: maps,
+          custNotes: notes,
+          items: [...cart],
+          totalPrice: total,
+          deliveryDate: 'Hari Sabtu (19.00 WIB)',
+          payMethod: payMethod,
+          proofImg: proofUrl,
+          status: 'Menunggu Konfirmasi'
+        };
+
+        if (!globalData.orders) globalData.orders = [];
+        globalData.orders.unshift(orderData);
+
+        cart.forEach(c => {
+          const p = globalData.products.find(prod => prod.id === c.id);
+          if (p) p.stock = Math.max(0, p.stock - c.qty);
+        });
+
+        await saveCloudData();
+
+        cart = [];
+        updateCartUI();
+        renderProducts();
+        closeCheckoutModal();
+
+        document.getElementById('successModalText').innerHTML = `
+          <strong>ID Pesanan:</strong> ${orderData.id}<br>
+          <strong>Nama:</strong> ${orderData.custName}<br>
+          <strong>Total:</strong> Rp ${orderData.totalPrice.toLocaleString('id-ID')}<br>
+          <strong>Pembayaran:</strong> ${orderData.payMethod}<br><br>
+          Pesanan Anda telah diteruskan ke Portal Penjual!
+        `;
+        document.getElementById('successModal').classList.remove('hidden');
+
+        btnSubmit.innerHTML = '<i class="fa-solid fa-paper-plane mr-1"></i> Kirim Pesanan Sekarang';
+        btnSubmit.disabled = false;
+      };
+
+      if (payMethod !== 'Cash' && proofInput.files && proofInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = async function(evt) {
+          await processOrder(evt.target.result);
+        };
+        reader.readAsDataURL(proofInput.files[0]);
+      } else {
+        await processOrder('');
+      }
+    }
+
+    function closeSuccessModal() {
+      document.getElementById('successModal').classList.add('hidden');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      fetchCloudData();
+      setInterval(fetchCloudData, 10000);
+    });
+  </script>
+</body>
+</html>
